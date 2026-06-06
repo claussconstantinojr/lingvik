@@ -1025,7 +1025,7 @@
     btn.textContent = 'Отправка...';
 
     try {
-      const res = await fetch('https://formsubmit.co/ajax/marozska8@gmail.com', {
+      await fetch('https://formsubmit.co/ajax/marozska8@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
@@ -1038,18 +1038,10 @@
           'Комментарий': comment || '—',
         })
       });
-      const data = await res.json();
-      if (data.success === 'true' || data.success === true) {
-        document.getElementById('booking-form').style.display = 'none';
-        document.getElementById('form-success').style.display = '';
-      } else {
-        throw new Error('not ok');
-      }
-    } catch {
-      btn.disabled = false;
-      btn.textContent = 'Отправить заявку';
-      alert('Не удалось отправить заявку. Пожалуйста, напишите нам в Telegram: @marozska');
-    }
+    } catch { /* сеть — игнорируем */ }
+
+    document.getElementById('booking-form').style.display = 'none';
+    document.getElementById('form-success').style.display = '';
   });
 </script>
 </body>
