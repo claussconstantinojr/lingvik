@@ -267,6 +267,35 @@
       cursor: default; user-select: none;
     }
     .cred svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .cred-label { }
+    @keyframes goldPulse {
+      0%, 100% { box-shadow: 0 4px 8px rgba(201,160,80,0), 0 2px 0 0 rgba(201,160,80,0); }
+      50%       { box-shadow: 0 6px 18px rgba(201,160,80,.45), 0 2px 0 0 rgba(201,160,80,.3); }
+    }
+    .cred { animation: goldPulse 2.4s ease-in-out infinite; }
+    .cred:nth-child(2) { animation-delay: .5s; }
+    .cred:nth-child(3) { animation-delay: 1s; }
+    .cred:nth-child(4) { animation-delay: 1.5s; }
+    .cred:nth-child(5) { animation-delay: 2s; }
+    .cred {
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .cred:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(201,160,80,.5);
+      border-color: rgba(201,160,80,.6);
+      animation-play-state: paused;
+    }
+    .cred-hint {
+      display: none;
+      font-size: .75rem; color: var(--text-l);
+      margin-top: .6rem; font-style: italic;
+    }
+    @media (max-width: 768px) {
+      .cred-hint { display: block; }
+      .cred:hover { transform: none; }
+    }
     .cred::after {
       content: attr(data-tooltip);
       position: absolute;
@@ -782,25 +811,26 @@
         <div class="creds">
           <div class="cred" data-tooltip="HSK (Hanyu Shuiping Kaoshi) — международный квалификационный экзамен по китайскому языку для лиц, не являющихся носителями языка. Тест разработан Государственным комитетом КНР по преподаванию китайского языка как иностранного и Пекинским университетом языка и культуры.">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-            HSK 4
+            <span class="cred-label">HSK 4</span>
           </div>
           <div class="cred" data-tooltip="МГУТУ имени К.Г. Разумовского (ПКУ) — профильное педагогическое образование.">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            Педагогическое образование
+            <span class="cred-label">Педагогическое образование</span>
           </div>
           <div class="cred" data-tooltip="Опыт работы с детьми в разных сферах — 3 года.">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Опыт с детьми
+            <span class="cred-label">Опыт с детьми</span>
           </div>
           <div class="cred" data-tooltip="Создаём уникальные материалы на каждый урок — никаких шаблонов.">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            Авторские материалы
+            <span class="cred-label">Авторские материалы</span>
           </div>
           <div class="cred" data-tooltip="Есть два формата уроков — офлайн в ДК «Исток» и онлайн по всей России. Занимайтесь с удобством!">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            Офлайн и онлайн
+            <span class="cred-label">Офлайн и онлайн</span>
           </div>
         </div>
+        <p class="cred-hint">Нажмите на карточку, чтобы узнать подробнее</p>
       </div>
     </div>
   </div>
