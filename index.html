@@ -640,6 +640,22 @@
       .hero-title { letter-spacing: 3px; font-size: clamp(3rem, 14vw, 5rem); }
       .hero-zh    { letter-spacing: 8px; }
     }
+    @media (max-width: 768px) {
+      .cred::after {
+        position: fixed;
+        bottom: 1.5rem;
+        left: 1rem; right: 1rem;
+        width: auto;
+        top: auto;
+        transform: translateY(8px);
+        font-size: .84rem;
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(0,0,0,.45);
+      }
+      .cred::before { display: none; }
+      .cred.tip-active::after { transform: translateY(0); }
+      .cred:hover::after { transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
