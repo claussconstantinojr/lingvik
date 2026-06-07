@@ -293,10 +293,12 @@
       transition: opacity .2s ease;
       z-index: 201;
     }
-    .cred:hover::after {
+    .cred:hover::after,
+    .cred.tip-active::after {
       opacity: 1; transform: translateX(-50%) translateY(0);
     }
-    .cred:hover::before { opacity: 1; }
+    .cred:hover::before,
+    .cred.tip-active::before { opacity: 1; }
 
     /* ── WHY ── */
     #why {
@@ -1068,6 +1070,18 @@
 
   modalOv.addEventListener('click', e => { if (e.target === modalOv) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* ── TOOLTIPS (mobile tap) ── */
+  document.querySelectorAll('.cred[data-tooltip]').forEach(el => {
+    el.addEventListener('click', function(e) {
+      const isActive = this.classList.contains('tip-active');
+      document.querySelectorAll('.cred.tip-active').forEach(c => c.classList.remove('tip-active'));
+      if (!isActive) { this.classList.add('tip-active'); e.stopPropagation(); }
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.cred.tip-active').forEach(c => c.classList.remove('tip-active'));
+  });
 
   /* ── FORM → FORMSUBMIT ── */
   document.getElementById('booking-form').addEventListener('submit', async function(e) {
